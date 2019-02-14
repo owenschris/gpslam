@@ -16,6 +16,9 @@ find_package(GTSAM REQUIRED) # Uses installed package
 include_directories(${GTSAM_INCLUDE_DIR})
 set(GTSAM_LIBS gtsam)
 
+# for unittest scripts
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${GTSAM_DIR}/../GTSAMCMakeTools")
+
 find_package(GTSAMCMakeTools)
 include(GtsamMakeConfigFile)
 include(GtsamBuildTypes)
@@ -23,10 +26,6 @@ include(GtsamTesting)
 
 # options
 option(GPSLAM_BUILD_MATLAB_TOOLBOX "whether build matlab toolbox" OFF)
-
-# for unittest scripts
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${GTSAM_DIR}/../GTSAMCMakeTools")
-
 
 # Boost - same requirement as gtsam
 find_package(Boost 1.46 REQUIRED)
