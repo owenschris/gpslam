@@ -10,6 +10,8 @@ set(GPSLAM_VERSION_STRING "${GPSLAM_VERSION_MAJOR}.${GPSLAM_VERSION_MINOR}.${GPS
 
 
 # Find dependent libraries
+set(GTSAM_DIR "/mnt/DATA1/asdr_sbir/tisdk/build/arago-tmp-external-linaro-toolchain/work/armv7ahf-neon-linux-gnueabi/astronav/1.0-r0-r0/build/libgtsam/src/libgtsam-install-RelWithDebInfo/lib/cmake/GTSAM")
+set(GTSAMCMakeTools_DIR "/mnt/DATA1/asdr_sbir/tisdk/build/arago-tmp-external-linaro-toolchain/work/armv7ahf-neon-linux-gnueabi/astronav/1.0-r0-r0/build/libgtsam/src/libgtsam-install-RelWithDebInfo/lib/cmake/GTSAMCMakeTools" CACHE INTERNAL "")
 
 # Find GTSAM components
 find_package(GTSAM REQUIRED) # Uses installed package
@@ -43,12 +45,6 @@ include_directories(BEFORE ${CMAKE_CURRENT_SOURCE_DIR})
 # Process source subdirs
 add_subdirectory(gpslam)
 
-# Wrapping to MATLAB
-if(GPSLAM_BUILD_MATLAB_TOOLBOX)
-  include(GtsamMatlabWrap)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-  wrap_and_install_library(gpslam.h ${PROJECT_NAME} "${CMAKE_CURRENT_SOURCE_DIR}" "")
-endif()
 
 # Install config and export files
 GtsamMakeConfigFile(gpslam)
